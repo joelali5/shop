@@ -5,14 +5,17 @@ import Products, {
   loader as productsLoader,
 } from "./features/products/Products";
 import Item, { loader as itemLoader } from "./features/products/Item";
-import Mens, { loader as mensLoader } from "./features/products/Mens";
-import Women from "./features/products/Women";
 import Electronics, {
   loader as electronicsLoader,
 } from "./features/products/Electronics";
-import Jewelery, {
-  loader as jeweleryLoader,
-} from "./features/products/Jewelery";
+import Shoes, { loader as shoesLoader } from "./features/products/Shoes";
+import Clothes, { loader as clothesLoader } from "./features/products/Clothes";
+import Furniture, {
+  loader as furnitureLoader,
+} from "./features/products/Furniture";
+import Miscellaneous, {
+  loader as miscellaneousLoader,
+} from "./features/products/Miscellaneous";
 import Cart from "./features/cart/Cart";
 import SignUp from "./features/authentication/SignUp";
 import Login from "./features/authentication/Login";
@@ -31,28 +34,34 @@ function App() {
           loader: productsLoader,
         },
         {
-          path: "/item/:id",
+          path: "/products/:id",
           element: <Item />,
           loader: itemLoader,
-        },
-        {
-          path: "/men",
-          element: <Mens />,
-          loader: mensLoader,
-        },
-        {
-          path: "/women",
-          element: <Women />,
-        },
-        {
-          path: "/jewelery",
-          element: <Jewelery />,
-          loader: jeweleryLoader,
         },
         {
           path: "/electronics",
           element: <Electronics />,
           loader: electronicsLoader,
+        },
+        {
+          path: "/clothes",
+          element: <Clothes />,
+          loader: clothesLoader,
+        },
+        {
+          path: "/furniture",
+          element: <Furniture />,
+          loader: furnitureLoader,
+        },
+        {
+          path: "/shoes",
+          element: <Shoes />,
+          loader: shoesLoader,
+        },
+        {
+          path: "/miscellaneous",
+          element: <Miscellaneous />,
+          loader: miscellaneousLoader,
         },
         {
           path: "/cart",

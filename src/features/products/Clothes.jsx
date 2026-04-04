@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import Product from "./ProductItem";
 import BackBtn from "../../ui/BackBtn";
 
-function Electronics() {
+function Clothes() {
   const products = useLoaderData();
 
   if (!products || products.length === 0) {
@@ -21,7 +21,7 @@ function Electronics() {
     <>
       <BackBtn route={-1} />
       <div className="container mx-auto px-4 py-6">
-        <h1 className="text-2xl font-bold mb-6">Electronics Collection</h1>
+        <h1 className="text-2xl font-bold mb-6">Clothes Collection</h1>
 
         {/* Responsive grid with auto-rows-fr for equal height rows */}
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-fr">
@@ -35,8 +35,8 @@ function Electronics() {
 }
 
 export async function loader() {
-  const products = await getCategoryProducts(2);
+  const products = await getCategoryProducts(1);
   return products;
 }
 
-export default Electronics;
+export default Clothes;

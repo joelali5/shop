@@ -1,18 +1,15 @@
-
-const API_URL = "/products";
+const API_URL = "https://api.escuelajs.co/api/v1";
 
 export async function getProducts() {
-  const res = await fetch(API_URL);
+  const res = await fetch(`${API_URL}/products`);
   if (!res.ok) throw new Error("Failed fetching products!");
-
   const data = await res.json();
-  
 
   return data;
 }
 
 export async function getProduct(id) {
-  const res = await fetch(`${API_URL}/${id}`);
+  const res = await fetch(`${API_URL}/products/${id}`);
   if (!res.ok) throw new Error("Failed fetching product");
   const data = await res.json();
 
@@ -27,8 +24,8 @@ export async function getAllCategories() {
   return data;
 }
 
-export async function getCategory(category) {
-  const res = await fetch(`${API_URL}/category/${category}`);
+export async function getCategoryProducts(id) {
+  const res = await fetch(`${API_URL}/categories/${id}/products`);
   if (!res.ok) throw new Error("Failed fetching this category");
 
   const data = await res.json();
