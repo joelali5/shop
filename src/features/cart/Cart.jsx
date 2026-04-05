@@ -8,7 +8,6 @@ import EmptyCart from "./EmptyCart";
 function Cart() {
   const cart = useSelector(getCart);
   const dispatch = useDispatch();
-  
 
   if (!cart.length) return <EmptyCart />;
 

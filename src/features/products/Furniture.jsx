@@ -23,7 +23,6 @@ function Furniture() {
       <div className="container mx-auto px-4 py-6">
         <h1 className="text-2xl font-bold mb-6">Furniture Collection</h1>
 
-        {/* Responsive grid with auto-rows-fr for equal height rows */}
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-fr">
           {products.map((product) => (
             <Product key={product.id} product={product} />

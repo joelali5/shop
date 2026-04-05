@@ -9,7 +9,7 @@ function Item() {
   const item = useLoaderData();
   const { id, images, category, title, price, description } = item;
 
-  // Get the first image from the images array
+
   const image = images?.[0] || "https://placehold.co/600x400";
   const categoryName = category?.name || "Uncategorized";
 
@@ -20,7 +20,7 @@ function Item() {
   function handleAddToCart() {
     const newItem = {
       id,
-      image, // Use the processed image URL
+      image,
       category: categoryName,
       title,
       price,
