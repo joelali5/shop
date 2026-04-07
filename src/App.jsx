@@ -8,14 +8,10 @@ import Item, { loader as itemLoader } from "./features/products/Item";
 import Electronics, {
   loader as electronicsLoader,
 } from "./features/products/Electronics";
-import Shoes, { loader as shoesLoader } from "./features/products/Shoes";
-import Clothes, { loader as clothesLoader } from "./features/products/Clothes";
-import Furniture, {
-  loader as furnitureLoader,
-} from "./features/products/Furniture";
-import Miscellaneous, {
-  loader as miscellaneousLoader,
-} from "./features/products/Miscellaneous";
+import Women, {loader as womensLoader} from "./features/products/Women";
+import Jewellery, {loader as jewelleryLoader} from "./features/products/Jewellery";
+import Men, {loader as mensLoader} from "./features/products/Mens";
+
 import Cart from "./features/cart/Cart";
 import SignUp from "./features/authentication/SignUp";
 import Login from "./features/authentication/Login";
@@ -44,24 +40,19 @@ function App() {
           loader: electronicsLoader,
         },
         {
-          path: "/clothes",
-          element: <Clothes />,
-          loader: clothesLoader,
+          path: "/men",
+          element: <Men />,
+          loader: mensLoader,
         },
         {
-          path: "/furniture",
-          element: <Furniture />,
-          loader: furnitureLoader,
+          path: "/jewellery",
+          element: <Jewellery />,
+          loader: jewelleryLoader,
         },
         {
-          path: "/shoes",
-          element: <Shoes />,
-          loader: shoesLoader,
-        },
-        {
-          path: "/miscellaneous",
-          element: <Miscellaneous />,
-          loader: miscellaneousLoader,
+          path: "/women",
+          element: <Women />,
+          loader: womensLoader
         },
         {
           path: "/cart",

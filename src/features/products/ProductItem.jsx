@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom";
 
 function Product({ product }) {
-  const { id, title, price, description, images, category } = product;
-  const productImage = images?.[0]
+  const { id, title, price, description, image, category } = product;
 
   return (
     <Link to={`/products/${id}`} className="block h-full">
       <li className="flex flex-col bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow h-full">
         <div className="relative w-full h-48 sm:h-56 md:h-64 bg-gray-100">
           <img
-            src={productImage}
+            src={image}
             className="w-full h-full object-cover"
             alt={title}
           />
@@ -28,10 +27,10 @@ function Product({ product }) {
 
           <div className="mt-auto space-y-2">
             <p className="text-xs uppercase text-stone-400 tracking-wider">
-              {category?.name || "Uncategorized"}
+              {category || "Uncategorized"}
             </p>
             <p className="text-xl font-bold text-green-600">
-              £{price.toFixed(2)}
+              C${price.toFixed(2)}
             </p>
           </div>
         </div>

@@ -7,11 +7,7 @@ import DeleteItem from "../cart/DeleteItem";
 
 function Item() {
   const item = useLoaderData();
-  const { id, images, category, title, price, description } = item;
-
-
-  const image = images?.[0] || "https://placehold.co/600x400";
-  const categoryName = category?.name || "Uncategorized";
+  const { id, image, category, title, price, description } = item;
 
   const dispatch = useDispatch();
   const currentQuantity = useSelector(getCurrentQuantityById(id));
@@ -21,7 +17,7 @@ function Item() {
     const newItem = {
       id,
       image,
-      category: categoryName,
+      category,
       title,
       price,
       description,
@@ -43,13 +39,13 @@ function Item() {
           />
         </div>
         <div className="h-1/2 flex flex-col justify-end gap-3">
-          <p className="text-sm uppercase text-stone-400">{categoryName}</p>
+          <p className="text-sm uppercase text-stone-400">{category || "Uncategorized"}</p>
           <p className="font-roboto text-sm font-bold">{title}</p>
           <p className="font-serif text-xs sm:text-sm text-stone-600 sm:w-5/6">
             {description}
           </p>
           <div className="flex flex-col sm:flex-row sm:justify-between items-center mt-2 sm:w-5/6">
-            <p className="font-bold text-lg sm:text-lg">£{price}</p>
+            <p className="font-bold text-lg sm:text-lg">C${price.toFixed(2)}</p>
             <div className="space-x-2 w-full sm:w-3/12">
               {isInCart && <DeleteItem id={id} />}
               {!isInCart && (

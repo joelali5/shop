@@ -19,7 +19,7 @@ function CartItem({ item }) {
           </div>
           <p className="text-stone-800 font-roboto">{title}</p>
         </div>
-        <h2 className="text-stone-900 font-bold">£{totalPrice.toFixed(2)}</h2>
+        <h2 className="text-stone-900 font-bold">C${totalPrice.toFixed(2)}</h2>
       </div>
       <div>
         <p className="uppercase text-stone-500 font-roboto font-semibold">

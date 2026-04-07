@@ -1,12 +1,13 @@
-import { getCategoryProducts } from "../../services/apiProducts";
+import { getProducts } from "../../services/apiProducts";
 import { useLoaderData } from "react-router-dom";
 import Product from "./ProductItem";
 import BackBtn from "../../ui/BackBtn";
 
-function Clothes() {
+function Men() {
   const products = useLoaderData();
+  const mens = products.filter(product => product.category === "men's clothing");
 
-  if (!products || products.length === 0) {
+  if (!mens || mens.length === 0) {
     return (
       <>
         <BackBtn route={-1} />
@@ -21,11 +22,11 @@ function Clothes() {
     <>
       <BackBtn route={-1} />
       <div className="container mx-auto px-4 py-6">
-        <h1 className="text-2xl font-bold mb-6">Clothes Collection</h1>
+        <h1 className="text-2xl font-bold mb-6">Men's Collection</h1>
 
-        {/* Responsive grid with auto-rows-fr for equal height rows */}
+        
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-fr">
-          {products.map((product) => (
+          {mens.map((product) => (
             <Product key={product.id} product={product} />
           ))}
         </ul>
@@ -35,8 +36,8 @@ function Clothes() {
 }
 
 export async function loader() {
-  const products = await getCategoryProducts(1);
+  const products = await getProducts();
   return products;
 }
 
-export default Clothes;
+export default Men;

@@ -4,34 +4,28 @@ function MobileViewNav() {
   return (
     <div className="flex flex-col gap-4 text-[16px]">
       <NavLink
-        to="/clothes"
+        to="/men"
         className="hover:text-blue-400 text-stone-400 aria-[current=page]:text-blue-400 sm:aria-[current=page]:border-b-2 pb-2 sm:aria-[current=page]:border-blue-400"
       >
-        Clothes
+        Men
       </NavLink>
       <NavLink
-        to="/shoes"
+        to="/jewellery"
         className="hover:text-blue-400 text-stone-400 aria-[current=page]:text-blue-400 sm:aria-[current=page]:border-b-2 pb-2 sm:aria-[current=page]:border-blue-400"
       >
-        Shoes
+        Jewellery
       </NavLink>
       <NavLink
-        to="/furniture"
+        to="/women"
         className="hover:text-blue-400 text-stone-400 aria-[current=page]:text-blue-400 sm:aria-[current=page]:border-b-2 pb-2 sm:aria-[current=page]:border-blue-400"
       >
-        Furniture
+        Women
       </NavLink>
       <NavLink
         to="/electronics"
         className="hover:text-blue-400 text-stone-400 aria-[current=page]:text-blue-400 sm:aria-[current=page]:border-b-2 pb-2 sm:aria-[current=page]:border-blue-400"
       >
         Electronics
-      </NavLink>
-      <NavLink
-        to="/miscellaneous"
-        className="hover:text-blue-400 text-stone-400 aria-[current=page]:text-blue-400 sm:aria-[current=page]:border-b-2 pb-2 sm:aria-[current=page]:border-blue-400"
-      >
-        Others
       </NavLink>
     </div>
   );

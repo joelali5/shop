@@ -14,7 +14,7 @@ function Products() {
     <>
       <BackBtn route={-1} />
       <div className="container mx-auto px-4 py-6">
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-fr">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-12 gap-x-6 auto-rows-fr">
           {products.map((product) => (
             <Product key={product.id} product={product} />
           ))}
