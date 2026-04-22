@@ -21,18 +21,15 @@ function Women() {
   }
 
   return (
-    <>
-      <BackBtn route={-1} />
-      <div className="container mx-auto px-4 py-6">
-        <h1 className="text-2xl font-bold mb-6">Women Collection</h1>
+    <div className="container mx-auto px-4 py-6">
+      <h1 className="text-2xl font-bold mb-6">Women Collection</h1>
 
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-fr">
-          {womens.map((product) => (
-            <Product key={product.id} product={product} />
-          ))}
-        </ul>
-      </div>
-    </>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-fr">
+        {womens.map((product) => (
+          <Product key={product.id} product={product} />
+        ))}
+      </ul>
+    </div>
   );
 }
 

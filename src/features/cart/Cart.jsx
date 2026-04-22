@@ -11,29 +11,59 @@ function Cart() {
 
   if (!cart.length) return <EmptyCart />;
 
+  const totalPrice = cart.reduce((acc, item) => acc + item.totalPrice, 0);
+
   return (
-    <>
-      <BackBtn route={-1} />
-      <ul className="list-none px-4 py-3 sm:w-3/5 sm:mx-auto sm:px-0">
-        {cart.map((item) => (
-          <CartItem item={item} key={item.id} />
-        ))}
-      </ul>
-      <div className="sm:w-3/5 mx-3 mb-3 sm:mx-auto flex justify-end space-x-3">
-        <button
-          className="border-[1px] border-stone-100 bg-stone-400 px-4 text-stone-100 rounded-md"
-          onClick={() => dispatch(clearCart())}
-        >
-          Clear cart
-        </button>
-        <Link
-          to="/checkout"
-          className="px-3 sm:px-5 py-2 bg-green-400 rounded-md text-white font-roboto tracking-wide"
-        >
-          Checkout
-        </Link>
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-6xl mx-auto px-6 py-8">
+        <div className="mb-4">
+          <BackBtn route={-1} />
+        </div>
+
+        <h1 className="text-2xl font-bold text-gray-900 mb-6">Your Cart</h1>
+
+        <div className="grid lg:grid-cols-3 gap-8">
+          <ul className="lg:col-span-2 space-y-4">
+            {cart.map((item) => (
+              <CartItem item={item} key={item.id} />
+            ))}
+          </ul>
+
+          <div className="bg-white rounded-2xl shadow-sm p-6 h-fit sticky top-24">
+            <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
+
+            <div className="flex justify-between text-sm text-gray-600 mb-2">
+              <span>Subtotal</span>
+              <span>C${totalPrice.toFixed(2)}</span>
+            </div>
+
+            <div className="flex justify-between text-sm text-gray-600 mb-4">
+              <span>Shipping</span>
+              <span>Free</span>
+            </div>
+
+            <div className="flex justify-between font-semibold text-lg border-t pt-4">
+              <span>Total</span>
+              <span>C${totalPrice.toFixed(2)}</span>
+            </div>
+
+            <Link
+              to="/checkout"
+              className="mt-6 block w-full text-center bg-black text-white py-3 rounded-full font-medium hover:bg-gray-800 transition"
+            >
+              Checkout
+            </Link>
+
+            <button
+              onClick={() => dispatch(clearCart())}
+              className="mt-3 w-full text-sm text-gray-500 hover:text-red-500 transition"
+            >
+              Clear cart
+            </button>
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 

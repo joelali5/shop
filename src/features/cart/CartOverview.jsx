@@ -5,17 +5,26 @@ import { getTotalPrice, getTotalQuantity } from "./cartSlice";
 function CartOverview() {
   const totalCartQuantity = useSelector(getTotalQuantity);
   const totalCartPrice = useSelector(getTotalPrice);
+
   return (
-    <div className="bg-primary text-stone-200 flex justify-between items-center px-2 py-5">
-      <div className="flex space-x-10 items-center">
-        <div className="flex space-x-1 text-[17px] font-roboto">
-          <span>{totalCartQuantity}</span>
-          <span>Items</span>
-        </div>
-        <p className="text-[17px]">C${totalCartPrice.toFixed(2)}</p>
+    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[95%] max-w-4xl bg-white shadow-xl rounded-full px-6 py-3 flex items-center justify-between border">
+      
+      {/* Left: Items + Price */}
+      <div className="flex items-center gap-6 text-sm text-gray-700">
+        <span className="font-medium">
+          {totalCartQuantity} item{totalCartQuantity > 1 ? "s" : ""}
+        </span>
+        <span className="font-semibold text-black">
+          C${totalCartPrice.toFixed(2)}
+        </span>
       </div>
-      <Link to="/cart" className="text-[17px] font-roboto">
-        Open Cart &rarr;
+
+      {/* Right: CTA */}
+      <Link
+        to="/cart"
+        className="bg-black text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition"
+      >
+        View Cart →
       </Link>
     </div>
   );

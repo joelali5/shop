@@ -1,9 +1,9 @@
 import { Outlet, useNavigation } from "react-router-dom";
-import Header from "./Header";
 import CartOverview from "../features/cart/CartOverview";
 import Loader from "./Loader";
 import { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
+import Navigation from "./Navigation";
 
 function AppLayout() {
   const navigation = useNavigation();
@@ -13,7 +13,7 @@ function AppLayout() {
   return (
     <div className="grid h-screen grid-rows-[auto_1fr_auto]">
       {isLoading && <Loader />}
-      <Header />
+      <Navigation />
       <main className="overflow-scroll">
         <Toaster
           position="top-center"

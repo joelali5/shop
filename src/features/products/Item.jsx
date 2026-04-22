@@ -13,60 +13,81 @@ function Item() {
   const currentQuantity = useSelector(getCurrentQuantityById(id));
   const isInCart = currentQuantity > 0;
 
-  function handleAddToCart() {
-    const newItem = {
-      id,
-      image,
-      category,
-      title,
-      price,
-      description,
-      quantity: 1,
-      totalPrice: price * 1,
-    };
-    dispatch(addItem(newItem));
+  function handleAddToCart(e) {
+    e.preventDefault();
+    dispatch(
+      addItem({
+        id,
+        image,
+        category,
+        title,
+        price,
+        description,
+        quantity: 1,
+        totalPrice: price,
+      }),
+    );
   }
 
   return (
-    <>
-      <BackBtn route={-1} />
-      <div className="bg-white shadow-xl rounded-lg flex flex-col mb-3 px-2 py-2 sm:mt-8 mx-5 sm:w-3/5 sm:flex-row sm:space-x-10 sm:items-center sm:mx-auto sm:px-5 sm:pb-6">
-        <div className="w-full sm:w-2/5 mb-4">
-          <img
-            src={image}
-            alt={title}
-            className="w-full h-auto object-cover rounded-lg"
-          />
-        </div>
-        <div className="h-1/2 flex flex-col justify-end gap-3">
-          <p className="text-sm uppercase text-stone-400">{category || "Uncategorized"}</p>
-          <p className="font-roboto text-sm font-bold">{title}</p>
-          <p className="font-serif text-xs sm:text-sm text-stone-600 sm:w-5/6">
-            {description}
-          </p>
-          <div className="flex flex-col sm:flex-row sm:justify-between items-center mt-2 sm:w-5/6">
-            <p className="font-bold text-lg sm:text-lg">C${price.toFixed(2)}</p>
-            <div className="space-x-2 w-full sm:w-3/12">
-              {isInCart && <DeleteItem id={id} />}
-              {!isInCart && (
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-6xl mx-auto px-6 py-8">
+        <BackBtn route={-1} />
+
+        <div className="grid md:grid-cols-2 gap-10 mt-6 bg-white rounded-2xl shadow-sm p-6">
+          <div className="bg-gray-50 rounded-xl flex items-center justify-center p-6">
+            <img
+              src={image}
+              alt={title}
+              className="max-h-[400px] object-contain hover:scale-105 transition"
+            />
+          </div>
+
+          <div className="flex flex-col">
+            <span className="text-xs uppercase text-gray-400">
+              {category || "Uncategorized"}
+            </span>
+
+            <h1 className="text-2xl font-bold mt-2">{title}</h1>
+
+            <p className="text-gray-600 mt-4">{description}</p>
+
+            <p className="text-2xl font-bold text-green-600 mt-6">
+              C${price.toFixed(2)}
+            </p>
+
+            <div className="mt-6 flex items-center gap-4">
+              {!isInCart ? (
                 <button
-                  className="border-1 px-3 w-full sm:w-fit py-3 font-bold outline outline-1 outline-primary hover:bg-primary transition hover:ease-in-out duration-300 hover:text-white uppercase text-xs rounded-sm"
                   onClick={handleAddToCart}
+                  className="bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition"
                 >
-                  Add to cart
+                  Add to Cart
                 </button>
+              ) : (
+                <>
+                  <span className="text-green-600">
+                    In Cart ({currentQuantity})
+                  </span>
+                  <DeleteItem id={id} />
+                </>
               )}
+            </div>
+
+            <div className="mt-8 border-t pt-4 text-sm text-gray-500 space-y-1">
+              <p>✔ Free shipping on orders over C$50</p>
+              <p>✔ 30-day returns</p>
+              <p>✔ Secure checkout</p>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
 export async function loader({ params }) {
-  const item = await getProduct(params.id);
-  return item;
+  return await getProduct(params.id);
 }
 
 export default Item;

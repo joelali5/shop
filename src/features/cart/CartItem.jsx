@@ -4,33 +4,31 @@ import UpdateItemQuantity from "./UpdateItemQuantity";
 function CartItem({ item }) {
   const { id, title, category, quantity, description, image, totalPrice } =
     item;
+
   return (
-    <li className="mb-5 border-b-2 pb-3">
-      <div className="flex items-center space-x-2 mb-2">
-        <span className="text-2xl">{quantity}</span>
-        <span>X</span>
-        <div className="flex items-center space-x-2 sm:space-x-12">
-          <div className="w-[50px]">
-            <img
-              className="w-full object-cover"
-              src={image}
-              alt="product img"
-            />
-          </div>
-          <p className="text-stone-800 font-roboto">{title}</p>
-        </div>
-        <h2 className="text-stone-900 font-bold">C${totalPrice.toFixed(2)}</h2>
+    <li className="bg-white rounded-2xl shadow-sm p-4 flex gap-4 items-start">
+      <div className="w-24 h-24 bg-gray-50 rounded-lg flex items-center justify-center p-2">
+        <img src={image} alt={title} className="max-h-full object-contain" />
       </div>
-      <div>
-        <p className="uppercase text-stone-500 font-roboto font-semibold">
-          {category}
-        </p>
-        <p className="text-sm font-serif tracking-wider text-stone-700 mb-4">
-          {description}
-        </p>
-        <div className="flex justify-between">
+
+      <div className="flex flex-col flex-1">
+        <div className="flex justify-between items-start">
+          <h3 className="font-semibold text-gray-900 line-clamp-2">{title}</h3>
+          <p className="font-bold text-gray-900 whitespace-nowrap">
+            C${totalPrice.toFixed(2)}
+          </p>
+        </div>
+
+        <p className="text-xs uppercase text-gray-400 mt-1">{category}</p>
+
+        <p className="text-sm text-gray-500 mt-2 line-clamp-2">{description}</p>
+
+        <div className="flex items-center justify-between mt-4">
+          <div className="flex items-center gap-3">
+            <span className="text-sm text-gray-500">Qty:</span>
+            <UpdateItemQuantity id={id} />
+          </div>
           <DeleteItem id={id} />
-          <UpdateItemQuantity id={id} />
         </div>
       </div>
     </li>

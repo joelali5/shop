@@ -4,38 +4,42 @@ function Product({ product }) {
   const { id, title, price, description, image, category } = product;
 
   return (
-    <Link to={`/products/${id}`} className="block h-full">
-      <li className="flex flex-col bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow h-full">
-        <div className="relative w-full h-48 sm:h-56 md:h-64 bg-gray-100">
+    <li className="list-none h-full">
+      <Link
+        to={`/products/${id}`}
+        className="group block h-full bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300"
+      >
+        <div className="relative bg-gray-50 overflow-hidden">
           <img
             src={image}
-            className="w-full h-full object-cover"
             alt={title}
+            className="h-60 w-full object-contain p-6 transition-transform duration-300 group-hover:scale-105"
           />
+
+          <span className="absolute top-3 left-3 bg-white/90 text-xs px-2 py-1 rounded-full text-gray-600">
+            {category || "Uncategorized"}
+          </span>
         </div>
 
-        <div className="flex flex-col flex-grow p-4">
-          <h3 className="font-roboto text-lg font-bold line-clamp-2 min-h-[3.5rem]">
-            {title}
-          </h3>
+        <div className="p-5 flex flex-col h-[180px]">
+          <h3 className="font-semibold text-gray-800 line-clamp-2">{title}</h3>
 
-          <div className="flex-grow">
-            <p className="text-sm text-gray-600 line-clamp-3 mb-3">
-              {description}
-            </p>
-          </div>
+          <p className="text-sm text-gray-500 line-clamp-2 mt-1">
+            {description}
+          </p>
 
-          <div className="mt-auto space-y-2">
-            <p className="text-xs uppercase text-stone-400 tracking-wider">
-              {category || "Uncategorized"}
-            </p>
-            <p className="text-xl font-bold text-green-600">
+          <div className="mt-auto flex items-center justify-between pt-3">
+            <p className="text-lg font-bold text-green-600">
               C${price.toFixed(2)}
             </p>
+
+            <span className="text-xs text-gray-400 group-hover:text-black transition">
+              View →
+            </span>
           </div>
         </div>
-      </li>
-    </Link>
+      </Link>
+    </li>
   );
 }
 
