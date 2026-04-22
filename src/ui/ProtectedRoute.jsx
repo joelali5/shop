@@ -1,20 +1,15 @@
-import { useEffect } from "react";
-import Loader from "./Loader";
-import { useNavigate } from "react-router-dom";
-import useUser from "../hooks/useUser";
+
+import { Navigate } from "react-router-dom";
+import { useUser } from "@clerk/clerk-react";
 
 function ProtectedRoute({ children }) {
-  const navigate = useNavigate();
+  const { isSignedIn, isLoaded } = useUser();
 
-  const { user, isLoading } = useUser();
+  if (!isLoaded) return null;
 
-  useEffect(() => {
-    if (!user && !isLoading) navigate("/login", { replace: true });
-  }, [user, isLoading, navigate]);
+  if (!isSignedIn) return <Navigate to="/login" />;
 
-  if (isLoading) return <Loader />;
-
-  if (user) return children;
+  return children;
 }
 
 export default ProtectedRoute;

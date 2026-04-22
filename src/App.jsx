@@ -8,12 +8,14 @@ import Item, { loader as itemLoader } from "./features/products/Item";
 import Electronics, {
   loader as electronicsLoader,
 } from "./features/products/Electronics";
-import Women, {loader as womensLoader} from "./features/products/Women";
-import Jewellery, {loader as jewelleryLoader} from "./features/products/Jewellery";
-import Men, {loader as mensLoader} from "./features/products/Mens";
+import Women, { loader as womensLoader } from "./features/products/Women";
+import Jewellery, {
+  loader as jewelleryLoader,
+} from "./features/products/Jewellery";
+import Men, { loader as mensLoader } from "./features/products/Mens";
 
 import Cart from "./features/cart/Cart";
-import SignUp from "./features/authentication/SignUp";
+import Signup from "./features/authentication/SignUp";
 import Login from "./features/authentication/Login";
 import Checkout from "./features/checkout/Checkout";
 import ProtectedRoute from "./ui/ProtectedRoute";
@@ -52,18 +54,18 @@ function App() {
         {
           path: "/women",
           element: <Women />,
-          loader: womensLoader
+          loader: womensLoader,
         },
         {
           path: "/cart",
           element: <Cart />,
         },
         {
-          path: "/signup",
-          element: <SignUp />,
+          path: "/signup/*",
+          element: <Signup />,
         },
         {
-          path: "/login",
+          path: "/login/*",
           element: <Login />,
         },
         {

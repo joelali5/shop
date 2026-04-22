@@ -8,18 +8,23 @@ import {
 function UpdateItemQuantity({ id }) {
   const dispatch = useDispatch();
   const currentQuantity = useSelector(getCurrentQuantityById(id));
+
   return (
-    <div className="flex space-x-2 items-center">
+    <div className="flex items-center border rounded-full overflow-hidden">
       <button
-        className="bg-primary text-stone-200 h-7 w-7 flex justify-center items-center rounded-full font-bold"
         onClick={() => dispatch(decreaseItemQuantity(id))}
+        className="px-3 py-1 text-gray-600 hover:bg-gray-100 transition"
       >
-        -
+        −
       </button>
-      <span className="text-sm font-semibold">{currentQuantity}</span>
+
+      <span className="px-4 text-sm font-medium text-gray-800">
+        {currentQuantity}
+      </span>
+
       <button
-        className="bg-primary text-stone-200 h-7 w-7 flex justify-center items-center rounded-full font-bold"
         onClick={() => dispatch(increaseItemQuantity(id))}
+        className="px-3 py-1 text-gray-600 hover:bg-gray-100 transition"
       >
         +
       </button>

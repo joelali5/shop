@@ -2,9 +2,9 @@ import { Link, NavLink } from "react-router-dom";
 import { BsCart4 } from "react-icons/bs";
 import { IoMenu, IoClose } from "react-icons/io5";
 import { useState } from "react";
-import Logout from "../features/authentication/Logout";
 import { useSelector } from "react-redux";
 import { getCart } from "../features/cart/cartSlice";
+import { useUser, UserButton } from "@clerk/clerk-react";
 
 const navLinks = [
   { name: "Men", path: "/men" },
@@ -17,14 +17,18 @@ function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const numCartItems = useSelector(getCart).length;
 
+  const { isSignedIn, user, isLoaded } = useUser();
+
+  if (!isLoaded) return null;
+
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link to="/" className="flex justify-center items-center">
+        <Link to="/" className="flex items-center">
           <img
             src="/logo.png"
             alt="Shop logo"
-            className="h-20 w-auto object-contain"
+            className="h-16 w-auto object-contain"
           />
         </Link>
 
@@ -34,24 +38,41 @@ function Navigation() {
               key={link.name}
               to={link.path}
               className={({ isActive }) =>
-                `relative transition ${
-                  isActive ? "text-black" : "text-gray-500 hover:text-black"
-                }`
+                isActive
+                  ? "text-black font-medium"
+                  : "text-gray-500 hover:text-black transition"
               }
             >
               {link.name}
-
-              <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-black transition-all duration-300 group-hover:w-full" />
             </NavLink>
           ))}
         </nav>
 
         <div className="flex items-center gap-4">
-          <Logout />
+          {isSignedIn ? (
+            <>
+              <span className="hidden sm:block text-sm text-gray-600">
+                Hi, {user?.firstName || "User"} 👋
+              </span>
+
+              <UserButton afterSignOutUrl="/" />
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="text-sm text-gray-600 hover:text-black"
+              >
+                Login
+              </Link>
+              <Link to="/signup" className="text-sm text-black font-medium">
+                Sign up
+              </Link>
+            </>
+          )}
 
           <Link to="/cart" className="relative group">
             <BsCart4 className="text-xl text-gray-700 group-hover:text-black transition" />
-
             {numCartItems > 0 && (
               <span className="absolute -top-2 -right-2 bg-black text-white text-[10px] px-1.5 py-[2px] rounded-full">
                 {numCartItems}
@@ -92,6 +113,17 @@ function Navigation() {
               {link.name}
             </NavLink>
           ))}
+
+          {!isSignedIn && (
+            <>
+              <Link to="/login" onClick={() => setIsOpen(false)}>
+                Login
+              </Link>
+              <Link to="/signup" onClick={() => setIsOpen(false)}>
+                Sign up
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>
